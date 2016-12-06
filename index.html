@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Minimal Websocket Example</title>
+    <script type="text/javascript" src="responding-ws.js"></script>
+  </head>
+  <body>
+    <p id="person"></p>
+    <button onclick="callEx()">Click me</button>
+  </body>
+
+<script>
+// Code injected by live-server
+  var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+  var address = protocol + window.location.host + window.location.pathname + 'd/ws/issue';
+  var socket = new WebSocket(address);
+
+function callEx()
+{
+	var WS_URI = `ws://${location.host}/d/ws/issue`;
+	var socket = new RespondingSocket(WS_URI);
+
+	setInterval( () => {
+	    socket.queueMessage('e').then( res => {
+	        console.log(res.data)
+		var node = document.createElement("p");                 // Create a <li> node
+		var textnode = document.createTextNode("Reply: " + res.data);         // Create a text node
+		node.appendChild(textnode);  
+		document.getElementById("person").appendChild(node); 
+	    })
+	}, 3000)
+
+}
+</script>
+
+</html>
+
