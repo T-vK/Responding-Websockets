@@ -18,5 +18,12 @@ socket.queueMessage('WS').then( res => {
 })
 ```
 
+##Example webpage
+1. Flash into ESP8266.
+2. Use pc or smartphone to access ESP8266 access point/wifi
+3. Go to 192.168.4.1
+4. Click on button
+5. Profit ???
+
 ### Disclaimer
 Using websockets this way should generally be considered bad practice, so I do not recommend using this library.
