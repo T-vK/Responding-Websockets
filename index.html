@@ -11,10 +11,6 @@
 
 <script>
 
-  var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
-  var address = protocol + window.location.host + window.location.pathname + 'd/ws/issue';
-  var socket = new WebSocket(address);
-
 function callEx()
 {
 	var WS_URI = `ws://${location.host}/d/ws/issue`;
