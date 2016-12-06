@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Minimal Websocket Example</title>
+    <script type="text/javascript" src="responding-ws.js"></script>
+  </head>
+  <body>
+    <input type="text" id="cmd">
+    <button onclick="sendCmd()">Send</button><br>
+    <textarea id="res" rows="15"></textarea>
+    <script>
+    const cmdField = document.getElementById('cmd')
+    const resField = document.getElementById('res')
+
+    const HOST = location.host || '192.168.4.1'
+    const WS_URI = `ws://${HOST}/d/ws/issue`
+    const socket = new RespondingSocket(WS_URI)
+
+    function sendCmd() {
+        socket.queueMessage(cmdField.value).then( res => {
+            console.log(res.data)
+            resField.value = `${resField.value}\n${res.data}`
+        })
+    }
+    </script>
+  </body>
+</html>
+
