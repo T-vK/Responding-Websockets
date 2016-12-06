@@ -1,8 +1,11 @@
 'use strict'
 
 class RespondingSocket {
-    constructor(wsUri=`ws://${location.host}`) {
-        this.wsUri = wsUri
+    constructor(wsUri=`${location.host}`) {
+	//Check if protocol is ws or wss
+	this.protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+	//Checks if protocol was inserted into the constructor string already
+	this.wsUri = wsUri.search("ws://\|wss://") !== -1 ? wsUri : this.protocol + wsUri + 'd/ws/issue';
         this.eventStack = []
         this.currentMsgObj = {}
         this.ready = false
